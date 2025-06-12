@@ -1,95 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-image: url('sasuke.jpg.png');
-  background-size: cover;
-  background-position: center;
-  font-family: 'Share Tech Mono', monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  color: #00ffcc;
-  position: relative;
+function updateClock() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 }
+setInterval(updateClock, 1000);
+updateClock();
 
-.clock-container {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 40px 60px 80px 60px; /* tambah padding bawah untuk api */
-  border-radius: 20px;
-  box-shadow: 0 0 30px #00ffcc;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  min-width: 320px;
-}
+// Kalimat motivasi Sasuke
+const quotes = [
+  "“Aku tidak akan mengulangi kesalahan yang sama.”",
+  "“Kebencian adalah kekuatanku.”",
+  "“Aku berjalan di jalan kegelapan demi tujuanku.”",
+  "“Aku tidak butuh cinta, aku butuh kekuatan.”",
+  "“Balas dendam adalah satu-satunya alasanku hidup.”",
+  "“Kenyataan kadang lebih menyakitkan daripada mimpi buruk.”",
+  "“Aku telah memilih jalan yang gelap, dan aku tidak akan berpaling.”",
+  "“Kekuasaan sejati hanya bisa didapatkan dengan pengorbanan.”",
+  "“Jika kamu ingin mengenalku... maka bencilah aku, bencilah dan hiduplah dalam kebencian.”",
+  "“Aku sudah kehilangan segalanya, dan itu yang membuatku kuat.”"
+];
 
-.clock {
-  font-size: 5em;
-  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
-  user-select: none;
-}
+let currentQuote = 0;
+let charIndex = 0;
+let isDeleting = false;
 
-.quote {
-  margin-top: 20px;
-  font-size: 1.2em;
-  color: #ffffff;
-  text-shadow: 0 0 5px red;
-  min-height: 60px;
-  white-space: pre-wrap;
-  user-select: none;
-}
-
-/* Efek api buatan dengan CSS */
-.fire-animation {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  height: 80px;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(0,255,204,0.4), transparent 70%),
-    radial-gradient(circle at 30% 80%, rgba(0,255,204,0.3), transparent 70%),
-    radial-gradient(circle at 70% 80%, rgba(0,255,204,0.3), transparent 70%);
-  animation: flicker 2.5s infinite alternate ease-in-out;
-  filter: drop-shadow(0 0 8px #00ffcc);
-  border-radius: 50% / 100%;
-  mix-blend-mode: screen;
-}
-
-@keyframes flicker {
-  0% {
-    opacity: 0.6;
-    filter: drop-shadow(0 0 8px #00ffcc);
-  }
-  50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 20px #00ffcc);
-  }
-  100% {
-    opacity: 0.6;
-    filter: drop-shadow(0 0 8px #00ffcc);
+function typeQuote() {
+  const quoteEl = document.getElementById('quote');
+  const currentText = quotes[currentQuote];
+  
+  if (!isDeleting) {
+    charIndex++;
+    quoteEl.textContent = currentText.substring(0, charIndex);
+    if (charIndex === currentText.length) {
+      isDeleting = true;
+      setTimeout(typeQuote, 3000); // tunggu 3 detik sebelum menghapus
+    } else {
+      setTimeout(typeQuote, 60);
+    }
+  } else {
+    charIndex--;
+    quoteEl.textContent = currentText.substring(0, charIndex);
+    if (charIndex === 0) {
+      isDeleting = false;
+      currentQuote = (currentQuote + 1) % quotes.length;
+      setTimeout(typeQuote, 500);
+    } else {
+      setTimeout(typeQuote, 30);
+    }
   }
 }
 
-/* Responsif */
-@media (max-width: 480px) {
-  .clock {
-    font-size: 3.5em;
-  }
-  .clock-container {
-    padding: 30px 40px 70px 40px;
-  }
-  .quote {
-    font-size: 1em;
-  }
-  .fire-animation {
-    height: 50px;
-    width: 150%;
-  }
-}
+typeQuote();
