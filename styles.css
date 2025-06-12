@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url('sasuke.jpg');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Share Tech Mono', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: #00ffcc;
+}
+
+.clock-container {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #00ffcc;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.clock {
+  font-size: 5em;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+
+.quote {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #ffffff;
+  text-shadow: 0 0 5px red;
+  min-height: 60px;
+  white-space: pre-wrap;
+}
+
+/* Efek api */
+.fire-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: url('https://i.imgur.com/JIZrF4P.gif') center center / cover no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
