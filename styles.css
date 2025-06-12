@@ -51,7 +51,7 @@ body, html {
   user-select: none;
 }
 
-/* Efek api buatan dengan CSS */
+/* Efek api */
 .fire-animation {
   position: absolute;
   bottom: 20px;
@@ -82,6 +82,41 @@ body, html {
   100% {
     opacity: 0.6;
     filter: drop-shadow(0 0 8px #00ffcc);
+  }
+}
+
+/* Efek Chidori (Petir) */
+.chidori {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(circle, #00ccff 20%, transparent 70%);
+  opacity: 0;
+  border-radius: 50%;
+  filter: blur(10px);
+  z-index: 3;
+  animation: none;
+}
+
+@keyframes spark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    box-shadow: 0 0 20px #00ccff, 0 0 40px #00ccff;
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 30px #00ccff, 0 0 60px #00ccff;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    box-shadow: 0 0 10px #00ccff, 0 0 30px #00ccff;
   }
 }
 
