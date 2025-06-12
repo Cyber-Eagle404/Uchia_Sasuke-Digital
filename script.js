@@ -1,10 +1,8 @@
 function updateClock() {
   const now = new Date();
 
-  // Hari dalam Bahasa Indonesia
   const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
   const dayName = days[now.getDay()];
-
   const date = String(now.getDate()).padStart(2, '0');
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const year = now.getFullYear();
@@ -61,5 +59,21 @@ function typeQuote() {
     }
   }
 }
-
 typeQuote();
+
+// Efek Chidori
+function triggerChidori() {
+  const chidori = document.getElementById('chidori');
+  chidori.style.animation = 'spark 0.6s ease-out';
+
+  setTimeout(() => {
+    chidori.style.animation = 'none';
+  }, 600);
+}
+
+// Muncul acak tiap 5–10 detik
+setInterval(() => {
+  if (Math.random() > 0.4) {
+    triggerChidori();
+  }
+}, 5000);
