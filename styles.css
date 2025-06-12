@@ -18,13 +18,21 @@ body, html {
 
 .clock-container {
   background: rgba(0, 0, 0, 0.7);
-  padding: 40px 60px 80px 60px; /* tambah padding bawah untuk api */
+  padding: 40px 60px 80px 60px;
   border-radius: 20px;
   box-shadow: 0 0 30px #00ffcc;
   text-align: center;
   position: relative;
   z-index: 2;
   min-width: 320px;
+}
+
+.date {
+  font-size: 1.5em;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+  margin-bottom: 10px;
+  user-select: none;
 }
 
 .clock {
@@ -79,6 +87,9 @@ body, html {
 
 /* Responsif */
 @media (max-width: 480px) {
+  .date {
+    font-size: 1.2em;
+  }
   .clock {
     font-size: 3.5em;
   }
