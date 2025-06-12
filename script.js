@@ -1,14 +1,24 @@
 function updateClock() {
   const now = new Date();
+
+  // Hari dalam Bahasa Indonesia
+  const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+  const dayName = days[now.getDay()];
+
+  const date = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const year = now.getFullYear();
+
   const hours = String(now.getHours()).padStart(2, '0');
   const minutes = String(now.getMinutes()).padStart(2, '0');
   const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  document.getElementById('date').textContent = `${dayName}, ${date}-${month}-${year}`;
   document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 }
 setInterval(updateClock, 1000);
 updateClock();
 
-// Kalimat motivasi Sasuke
 const quotes = [
   "“Aku tidak akan mengulangi kesalahan yang sama.”",
   "“Kebencian adalah kekuatanku.”",
@@ -29,13 +39,13 @@ let isDeleting = false;
 function typeQuote() {
   const quoteEl = document.getElementById('quote');
   const currentText = quotes[currentQuote];
-  
+
   if (!isDeleting) {
     charIndex++;
     quoteEl.textContent = currentText.substring(0, charIndex);
     if (charIndex === currentText.length) {
       isDeleting = true;
-      setTimeout(typeQuote, 3000); // tunggu 3 detik sebelum menghapus
+      setTimeout(typeQuote, 3000);
     } else {
       setTimeout(typeQuote, 60);
     }
