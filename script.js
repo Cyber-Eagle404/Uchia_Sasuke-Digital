@@ -1,4 +1,7 @@
-// ===== JAM DIGITAL =====
+  <script src="script.js"></script>
+</body>
+</html>
+
 function updateClock() {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, '0');
@@ -17,45 +20,67 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// ===== QUOTE SASUKE =====
+// Quotes Sasuke
 const quotes = [
   "“Aku tidak akan mengulangi kesalahan yang sama.”",
   "“Kebencian adalah kekuatanku.”",
   "“Aku berjalan di jalan kegelapan demi tujuanku.”",
   "“Aku tidak butuh cinta, aku butuh kekuatan.”",
-  "“Balas dendam adalah satu-satunya alasanku hidup.”"
+  "“Balas dendam adalah satu-satunya alasanku hidup.”",
+  "“Kenyataan kadang lebih menyakitkan daripada mimpi buruk.”",
+  "“Aku telah memilih jalan yang gelap, dan aku tidak akan berpaling.”",
+  "“Kekuasaan sejati hanya bisa didapatkan dengan pengorbanan.”",
+  "“Jika kamu ingin mengenalku... maka bencilah aku, bencilah dan hiduplah dalam kebencian.”",
+  "“Aku sudah kehilangan segalanya, dan itu yang membuatku kuat.”"
 ];
 
 let currentQuote = 0;
-function showQuote() {
-  document.getElementById('quote').textContent = quotes[currentQuote];
-  currentQuote = (currentQuote + 1) % quotes.length;
-  setTimeout(showQuote, 3000);
-}
-showQuote();
+let charIndex = 0;
+let isDeleting = false;
 
-// ===== EFEK CHIDORI =====
+function typeQuote() {
+  const quoteEl = document.getElementById('quote');
+  const currentText = quotes[currentQuote];
+  
+  if (!isDeleting) {
+    charIndex++;
+    quoteEl.textContent = currentText.substring(0, charIndex);
+    if (charIndex === currentText.length) {
+      isDeleting = true;
+      setTimeout(typeQuote, 3000);
+    } else {
+      setTimeout(typeQuote, 60);
+    }
+  } else {
+    charIndex--;
+    quoteEl.textContent = currentText.substring(0, charIndex);
+    if (charIndex === 0) {
+      isDeleting = false;
+      currentQuote = (currentQuote + 1) % quotes.length;
+      setTimeout(typeQuote, 500);
+    } else {
+      setTimeout(typeQuote, 30);
+    }
+  }
+}
+typeQuote();
+
+// Efek Chidori
 function triggerChidori() {
   const chidori = document.getElementById('chidori');
   chidori.style.animation = 'spark 0.6s ease-out';
   chidori.style.opacity = '1';
   setTimeout(() => {
-    chidori.style.opacity = '0';
     chidori.style.animation = 'none';
+    chidori.style.opacity = '0';
   }, 600);
 }
-setInterval(() => Math.random() > 0.4 && triggerChidori(), 5000);
 
-// ===== INTERAKSI WAJAH 3D =====
-const faceContainer = document.querySelector('.face-3d-container');
-faceContainer.addEventListener('mousemove', (e) => {
-  faceContainer.style.animation = 'none';
-  const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-  const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-  faceContainer.style.transform = `translateX(-50%) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-});
+// Pemicu berkala
+setInterval(() => {
+  if (Math.random() > 0.4) {
+    triggerChidori();
+  }
+}, 5000);
 
-faceContainer.addEventListener('mouseleave', () => {
-  faceContainer.style.animation = 'rotate3D 10s linear infinite';
-  faceContainer.style.transform = 'translateX(-50%) rotateY(0deg)';
-});
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
