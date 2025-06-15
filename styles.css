@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 body, html {
   margin: 0;
   padding: 0;
@@ -15,7 +17,7 @@ body, html {
 
 .clock-container {
   background: rgba(0, 0, 0, 0.6);
-  padding: 120px 60px 40px; /* padding atas diperbesar karena gambar di atas */
+  padding: 120px 60px 40px;
   border-radius: 20px;
   box-shadow: 0 0 30px #00ffcc;
   text-align: center;
@@ -23,7 +25,6 @@ body, html {
   z-index: 2;
 }
 
-/* Gambar bulat di atas jam */
 .profile-img {
   position: absolute;
   top: -60px;
@@ -56,7 +57,6 @@ body, html {
     box-shadow: 0 0 25px rgba(0, 255, 204, 0.6), 0 0 50px rgba(0, 255, 204, 0.4);
   }
 }
-
 
 .profile-img:hover {
   transform: translateX(-50%) scale(1.05);
@@ -93,7 +93,6 @@ body, html {
   position: relative;
 }
 
-/* Efek Petir Chidori */
 .chidori {
   position: absolute;
   top: 50%;
