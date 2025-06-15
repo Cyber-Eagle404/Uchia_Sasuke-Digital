@@ -17,12 +17,52 @@ body, html {
 
 .clock-container {
   background: rgba(0, 0, 0, 0.6);
-  padding: 40px 60px 120px; /* extra bottom padding untuk gambar */
+  padding: 120px 60px 40px; /* padding atas diperbesar karena gambar di atas */
   border-radius: 20px;
   box-shadow: 0 0 30px #00ffcc;
   text-align: center;
   position: relative;
   z-index: 2;
+}
+
+/* Gambar bulat di atas jam */
+.profile-img {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.5), 0 0 40px rgba(0, 255, 204, 0.3);
+  animation: rotateGlow 10s linear infinite, pulseGlow 2.5s ease-in-out infinite;
+  z-index: 3;
+  opacity: 0.95;
+}
+
+@keyframes rotateGlow {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3), 0 0 20px rgba(0, 255, 204, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.6), 0 0 50px rgba(0, 255, 204, 0.4);
+  }
+}
+
+
+.profile-img:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 204, 0.7);
 }
 
 .clock {
@@ -53,27 +93,6 @@ body, html {
   white-space: pre-wrap;
   z-index: 3;
   position: relative;
-}
-
-/* Gambar bulat di tengah bawah jam */
-.profile-img {
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 3;
-  opacity: 0.95;
-}
-
-.profile-img:hover {
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 255, 204, 0.7);
 }
 
 /* Efek Petir Chidori */
