@@ -84,3 +84,20 @@ body, html {
     transform: translate(-50%, -50%) scale(0.5);
   }
 }
+
+/* Gambar Longor di pojok kanan bawah */
+.profile-img {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,255,204,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+.profile-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0,255,204,0.8);
+}
