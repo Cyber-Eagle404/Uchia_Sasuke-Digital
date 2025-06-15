@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jam Digital Sasuke</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="clock-container">
+    <!-- Wajah 3D dengan 4 sisi -->
+    <div class="face-3d-container">
+      <img src="images/longor.jpg" class="face-3d face-front" alt="Depan">
+      <img src="images/longor-right.jpg" class="face-3d face-right" alt="Kanan">
+      <img src="images/longor-back.jpg" class="face-3d face-back" alt="Belakang">
+      <img src="images/longor-left.jpg" class="face-3d face-left" alt="Kiri">
+    </div>
+
     <div class="clock" id="clock">00:00:00</div>
     <div class="hashtag">#Gintingg</div>
     <div class="day-date" id="dayDate">Senin, 12 Juni 2025</div>
     <div class="quote" id="quote"></div>
-    <!-- Gambar bulat di bawah jam -->
-    <img src="longor.jpg" alt="Profil Longor" class="profile-img" />
   </div>
 
   <div class="chidori" id="chidori"></div>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
