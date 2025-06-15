@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
+/* ===== GLOBAL ===== */
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-image: url('sasuke.jpg.png');
+  background-image: url('../images/sasuke-bg.jpg');
   background-size: cover;
   background-position: center;
   font-family: 'Share Tech Mono', monospace;
@@ -15,9 +14,10 @@ body, html {
   color: #00ffcc;
 }
 
+/* ===== CONTAINER UTAMA ===== */
 .clock-container {
   background: rgba(0, 0, 0, 0.6);
-  padding: 120px 60px 40px; /* padding atas diperbesar karena gambar di atas */
+  padding: 120px 60px 40px;
   border-radius: 20px;
   box-shadow: 0 0 30px #00ffcc;
   text-align: center;
@@ -25,46 +25,40 @@ body, html {
   z-index: 2;
 }
 
-/* Gambar bulat di atas jam */
-.profile-img {
+/* ===== ANIMASI 3D WAJAH ===== */
+.face-3d-container {
   position: absolute;
   top: -60px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
   height: 100px;
+  transform-style: preserve-3d;
+  animation: rotate3D 10s linear infinite;
+  z-index: 3;
+}
+
+.face-3d {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 20px rgba(0, 255, 204, 0.5), 0 0 40px rgba(0, 255, 204, 0.3);
-  animation: rotateGlow 10s linear infinite, pulseGlow 2.5s ease-in-out infinite;
-  z-index: 3;
-  opacity: 0.95;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+  backface-visibility: hidden;
 }
 
-@keyframes rotateGlow {
-  0% {
-    transform: translateX(-50%) rotate(0deg);
-  }
-  100% {
-    transform: translateX(-50%) rotate(360deg);
-  }
+.face-front { transform: translateZ(50px); }
+.face-back { transform: rotateY(180deg) translateZ(50px); }
+.face-left { transform: rotateY(-90deg) translateZ(50px); }
+.face-right { transform: rotateY(90deg) translateZ(50px); }
+
+@keyframes rotate3D {
+  0% { transform: translateX(-50%) rotateY(0deg); }
+  100% { transform: translateX(-50%) rotateY(360deg); }
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3), 0 0 20px rgba(0, 255, 204, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(0, 255, 204, 0.6), 0 0 50px rgba(0, 255, 204, 0.4);
-  }
-}
-
-
-.profile-img:hover {
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 255, 204, 0.7);
-}
-
+/* ===== KOMPONEN LAINNYA ===== */
 .clock {
   font-size: 5em;
   text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
@@ -91,11 +85,9 @@ body, html {
   text-shadow: 0 0 5px red;
   min-height: 60px;
   white-space: pre-wrap;
-  z-index: 3;
-  position: relative;
 }
 
-/* Efek Petir Chidori */
+/* Efek Chidori */
 .chidori {
   position: absolute;
   top: 50%;
@@ -109,20 +101,10 @@ body, html {
   box-shadow: 0 0 40px 10px rgba(0, 255, 255, 0.8), 0 0 60px 20px rgba(0, 255, 255, 0.4);
   opacity: 0;
   z-index: 5;
-  animation: none;
 }
 
 @keyframes spark {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.3);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
 }
