@@ -35,18 +35,10 @@ body, html {
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 20px rgba(0, 255, 204, 0.5), 0 0 40px rgba(0, 255, 204, 0.3);
-  animation: rotateGlow 10s linear infinite, pulseGlow 2.5s ease-in-out infinite;
+  animation: pulseGlow 2.5s ease-in-out infinite;
   z-index: 3;
   opacity: 0.95;
-}
-
-@keyframes rotateGlow {
-  0% {
-    transform: translateX(-50%) rotate(0deg);
-  }
-  100% {
-    transform: translateX(-50%) rotate(360deg);
-  }
+  transition: transform 0.2s ease;
 }
 
 @keyframes pulseGlow {
