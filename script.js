@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // JAM & TANGGAL
   function updateClock() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateClock, 1000);
   updateClock();
 
+  // KUTIPAN BERTIK
   const quotes = [
     "“Aku tidak akan mengulangi kesalahan yang sama.”",
     "“Kebencian adalah kekuatanku.”",
@@ -63,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   typeQuote();
 
+  // EFEK CHIDORI
   function triggerChidori() {
     const chidori = document.getElementById('chidori');
     chidori.style.animation = 'spark 0.6s ease-out';
@@ -78,4 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
       triggerChidori();
     }
   }, 5000);
+
+  // ROTASI GAMBAR PROFIL DINAMIS
+  const profileImg = document.getElementById("profileImg");
+  let rotation = 0;
+  let speed = 10; // derajat per detik
+  const maxSpeed = 360;
+
+  function rotateProfile() {
+    rotation = (rotation + speed / 60) % 360;
+    profileImg.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
+    requestAnimationFrame(rotateProfile);
+  }
+  rotateProfile();
+
+  profileImg.addEventListener("click", () => {
+    if (speed < maxSpeed) {
+      speed += 10;
+    }
+  });
 });
