@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // JAM & TANGGAL
   function updateClock() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateClock, 1000);
   updateClock();
 
-  // KUTIPAN BERTIK
   const quotes = [
     "“Aku tidak akan mengulangi kesalahan yang sama.”",
     "“Kebencian adalah kekuatanku.”",
@@ -65,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   typeQuote();
 
-  // EFEK CHIDORI
   function triggerChidori() {
     const chidori = document.getElementById('chidori');
     chidori.style.animation = 'spark 0.6s ease-out';
@@ -82,22 +79,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 5000);
 
-  // ROTASI GAMBAR PROFIL DINAMIS
+  // ROTASI DAN LEDAKAN
   const profileImg = document.getElementById("profileImg");
-  let rotation = 0;
-  let speed = 10; // derajat per detik
-  const maxSpeed = 360;
+  const explosion = document.getElementById("explosion");
+  const speedIndicator = document.getElementById("speedIndicator");
 
-  function rotateProfile() {
-    rotation = (rotation + speed / 60) % 360;
-    profileImg.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
-    requestAnimationFrame(rotateProfile);
+  let angle = 0;
+  let speed = 0.5;
+  const maxSpeed = 10;
+
+  function rotate() {
+    angle += speed;
+    profileImg.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+
+    if (speed >= 8 && !profileImg.classList.contains("shaking")) {
+      triggerExplosion();
+    }
+
+    requestAnimationFrame(rotate);
   }
-  rotateProfile();
+
+  rotate();
 
   profileImg.addEventListener("click", () => {
-    if (speed < maxSpeed) {
-      speed += 10;
-    }
+    speed += 0.5;
+    if (speed > maxSpeed) speed = maxSpeed;
+
+    profileImg.style.boxShadow = "0 0 30px 10px rgba(0,255,204,0.9)";
+    setTimeout(() => {
+      profileImg.style.boxShadow = "0 0 20px rgba(0,255,204,0.5), 0 0 40px rgba(0,255,204,0.3)";
+    }, 300);
   });
+
+  function triggerExplosion() {
+    profileImg.classList.add("shaking");
+    explosion.style.animation = 'explode 0.6s ease-out';
+    explosion.style.opacity = '1';
+    profileImg.style.animation = 'shake 0.3s ease-in-out 3';
+
+    setTimeout(() => {
+      explosion.style.animation = 'none';
+      explosion.style.opacity = '0';
+      profileImg.classList.remove("shaking");
+      profileImg.style.animation = 'none';
+      speed = 0.5;
+    }, 700);
+  }
+
+  setInterval(() => {
+    speedIndicator.textContent = `⚡️ Speed: ${speed.toFixed(2)}°/frame`;
+  }, 500);
 });
